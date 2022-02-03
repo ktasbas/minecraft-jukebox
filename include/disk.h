@@ -20,10 +20,10 @@ struct disk_type {
  */
 class Disk {
 public:
-  static constexpr disk_type unknown {"unknown", -1, -1, -1};
-  static constexpr disk_type blue {"blue", 1650000, 2060000, 1};
+  static const disk_type unknown;
+  static const disk_type blue;
 
-  static constexpr disk_type disks[2] = {unknown, blue};
+  static const disk_type disks[2];
 };
 
 /**
