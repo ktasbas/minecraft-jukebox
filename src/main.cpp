@@ -3,7 +3,6 @@
 #include <DFRobotDFPlayerMini.h>
 #include "disk_reader.h"
 
-#define DEBUG 1
 #ifdef DEBUG
   #define DEBUG(x) x
 #else
