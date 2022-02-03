@@ -42,4 +42,5 @@ disk_type DiskReader::rgbToDisk(long rgb)
     if (d.range_min > rgb && d.range_max < rgb)
       return d;
   }
+  return Disk::unknown;
 }
