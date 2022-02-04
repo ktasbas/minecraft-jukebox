@@ -6,6 +6,14 @@
 #include <Adafruit_TCS34725.h>
 #include "disk.h"
 
+struct rgb_type {
+  rgb_type(uint8_t _r = 0, uint8_t _g = 0, uint8_t _b = 0) :
+    r(_r), g(_g), b(_b) {}
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+};
+
 class DiskReader {
   public:
   /**
@@ -26,7 +34,7 @@ class DiskReader {
    * 
    * @return Decimal representation of the inserted disk
    */
-  long readRawDisk();
+  rgb_type readRawDisk();
 
   /**
    * Reads the color of the inserted disk and retrieves the instance of
@@ -40,10 +48,10 @@ class DiskReader {
   /**
    * Determins the instance of disk_type associated with given RGB code
    * 
-   * @param rgb The 24 bit RGB value
+   * @param rgb_type The RGB value
    * @return disk_type
    */
-  disk_type rgbToDisk(long rgb);
+  disk_type rgbToDisk(rgb_type rgb);
   
   private:
   Adafruit_TCS34725 sensor;

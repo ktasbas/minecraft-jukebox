@@ -43,23 +43,31 @@ void setup() {
 }
 
 void loop() {
-  disk_type d = disk.readDisk();
-  DEBUG(Serial.print("Disk: "));
-  DEBUG(Serial.println(toString(d)));
-  DEBUG(Serial.print("DiskPlayer (state): "));
-  DEBUG(Serial.println(DiskPlayer.readState()));
+  DEBUG(
+    // For calibration
+    char buf[512];
+    rgb_type rgb = disk.readRawDisk();
+    sprintf(buf, "\t r: %d\t g: %d\t b: %d", rgb.r, rgb.g, rgb.b);
+  );
 
-  if (d != Disk::unknown)
-  {
-    if (!isPlaying)
-    {
+  disk_type d = disk.readDisk();
+
+  DEBUG(
+    Serial.print("Disk: ");
+    Serial.print(toString(d));
+    Serial.println(buf);
+    Serial.print("DiskPlayer (state): ");
+    Serial.println(DiskPlayer.readState());
+  );
+
+  if (d.file_id > -1) { // This disk has an associated mp3 file
+    if (!isPlaying) {
       DEBUG(Serial.println("Playing song..."));
-      DiskPlayer.play(d.file_id);
+      DiskPlayer.playMp3Folder(d.file_id);
       isPlaying = true;
     }
   }
-  else
-  {
+  else {
     if (isPlaying)
     {
       DEBUG(Serial.println("Pausing song..."));
