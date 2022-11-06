@@ -25,11 +25,14 @@ struct disk_type {
 class Disk {
 public:
   static const disk_type unknown;
-  static const disk_type blue;
-  static const disk_type green;
-  static const disk_type purple;
+  static const disk_type blueWait;
+  static const disk_type greenCat;
+  static const disk_type purpleMall;
+  static const disk_type purpleMellohi;
+  static const disk_type redBlocks;
+  static const disk_type redChirp;
 
-  static const disk_type disks[4];
+  static const disk_type disks[7];
 };
 
 /**
